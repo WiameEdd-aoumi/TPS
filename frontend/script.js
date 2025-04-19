@@ -15,21 +15,18 @@ le nom du propriétaire*/
 const examsKey = 'examens_' + examen.proprietaire;
 
 const exams = JSON.parse(localStorage.getItem(examsKey)) || [];
+if (exams.find(e => e.nom === examen.nom)) {
+  alert("Un examen avec ce nom existe déjà !");
+  return;
+}
+
 exams.push(examen);
 localStorage.setItem(examsKey, JSON.stringify(exams));
 alert('Examen ajouté avec succès !');
 this.reset();
 
 // verification que l'examen n'existe pas déja
-if (exams.find(e => e.nom === examen.nom)) {
-    alert("Un examen avec ce nom existe déjà !");
-    return;
-  }
-//
 
-  exams.push(examen);
-  localStorage.setItem(examsKey, JSON.stringify(exams));
 
-  alert('Examen ajouté avec succès !');
-  this.reset();
+  
 });
